@@ -17,13 +17,12 @@ def add_department(data: DepartmentSchema, session: sessionDep):
     
     if parent_id:
         parent = session.get(Department, data.parent_id)
-        message = f"Дочерний департамент {data.name} создан в департаменте {parent.name}"
         if not parent:
             raise HTTPException(
                 status_code=404,
                 detail=f"Департамент родитель не найден"
             )
-            
+        message = f"Дочерний департамент {data.name} создан в департаменте {parent.name}"
         exists = session.execute(
             select(Department.id)
             .where(

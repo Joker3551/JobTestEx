@@ -25,6 +25,3 @@ sessionDep = Annotated[Session, Depends(get_session)]
 
 class Base(DeclarativeBase):
     pass
-
-
-    
