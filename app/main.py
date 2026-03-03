@@ -107,11 +107,11 @@ def get_department_and_all_details(
     ):
     department = session.get(Department, id)
     children = get_children(session, id, depth)  
+    list_employees = []
     if include_employees:
         employees = session.query(Employee)\
         .filter(Employee.department_id == id)\
         .all()
-        list_employees = []
         for employee in employees:
             list_employees.append({
                 "id": employee.id,
